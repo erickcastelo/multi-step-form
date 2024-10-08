@@ -23,13 +23,18 @@ export const PersonalInfo = forwardRef<
     () => {
       return {
         triggerSubmit() {
-          formRef.current?.requestSubmit();
+          const formElement = formRef.current;
+          const event = new Event("submit", {
+            cancelable: true,
+            bubbles: true,
+          });
+          if (formElement) formElement.dispatchEvent(event);
 
           return form.formState.isValid;
         },
       };
     },
-    [form]
+    [form.formState.isValid]
   );
 
   return (

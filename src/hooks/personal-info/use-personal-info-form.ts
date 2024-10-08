@@ -1,9 +1,9 @@
-import { usePersonalInfoStore } from "@/providers/personal-info-store-provider";
 import { personalInfoSchema } from "@/schema/personal-info-schema";
 import { PersonalInfoState } from "@/stores/personal-info-store";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormEvent } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { usePersonalInfoStore } from "./use-personal-info-store";
 
 export const usePersonalInfoForm = () => {
   const { update, personalInfo } = usePersonalInfoStore((state) => state);
@@ -12,16 +12,15 @@ export const usePersonalInfoForm = () => {
     defaultValues: personalInfo,
     resolver: yupResolver(personalInfoSchema),
   });
-
   const { handleSubmit } = form;
 
-  const onHandleForm: SubmitHandler<PersonalInfoState> = (data) => {
+  const handleForm: SubmitHandler<PersonalInfoState> = (data) => {
     update(data);
   };
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    handleSubmit(onHandleForm)();
+    handleSubmit(handleForm)();
   };
 
   return {

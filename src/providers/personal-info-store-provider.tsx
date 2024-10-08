@@ -1,11 +1,7 @@
 "use client";
 
-import {
-  createPersonalInfoStore,
-  PersonalInfoStore,
-} from "@/stores/personal-info-store";
-import { createContext, ReactNode, useContext, useRef } from "react";
-import { useStore } from "zustand";
+import { createPersonalInfoStore } from "@/stores/personal-info-store";
+import { createContext, ReactNode, useRef } from "react";
 
 export type PersonalInfoStoreApi = ReturnType<typeof createPersonalInfoStore>;
 
@@ -30,18 +26,4 @@ export const PersonalInfoStoreProvider = ({
       {children}
     </PersonalInfoStoreContext.Provider>
   );
-};
-
-export const usePersonalInfoStore = <T,>(
-  selector: (store: PersonalInfoStore) => T
-): T => {
-  const personalInfoStoreContext = useContext(PersonalInfoStoreContext);
-
-  if (!personalInfoStoreContext) {
-    throw new Error(
-      `usePersonalInfoStore must be used within PersonalInfoStoreProvider`
-    );
-  }
-
-  return useStore(personalInfoStoreContext, selector);
 };

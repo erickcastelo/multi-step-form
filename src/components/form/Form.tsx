@@ -1,12 +1,14 @@
 import { ComponentPropsWithRef, forwardRef, ReactNode } from "react";
-import { FormProvider } from "react-hook-form";
+import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
 
-type FormProps = {
+export type UseForm<T extends FieldValues> = UseFormReturn<T>;
+
+type FormProps<T extends FieldValues> = {
   children: ReactNode;
-  useForm: any;
+  useForm: UseForm<T>;
 } & ComponentPropsWithRef<"form">;
 
-export const Form = forwardRef<HTMLFormElement, FormProps>(
+export const Form = forwardRef<HTMLFormElement, FormProps<any>>(
   ({ children, useForm, ...restProps }, ref) => {
     return (
       <FormProvider {...useForm}>
