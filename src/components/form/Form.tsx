@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentPropsWithRef, forwardRef, ReactNode } from "react";
 import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
 
