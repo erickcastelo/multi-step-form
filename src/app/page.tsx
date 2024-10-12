@@ -47,7 +47,7 @@ export default function Home() {
         </Stepper>
       </header>
 
-      <main className="bg-white w-card-45 h-card-25 rounded-lg m-4 z-0 p-7 self-start mt-28">
+      <main className="bg-white w-card-45 rounded-lg m-4 z-0 p-7 self-start mt-28">
         <h1 className={`${ubuntoBold.className} text-2xl text-blue-900`}>
           {titles[current].title}
         </h1>
